@@ -28,4 +28,3 @@ jobs:
         with:
           working-directory: ./redux-anecdotes
           command: npm run test:e2e
-          wait-on: http://localhost:3001
