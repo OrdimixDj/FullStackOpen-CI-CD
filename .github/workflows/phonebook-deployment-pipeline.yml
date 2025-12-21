@@ -13,7 +13,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  phonebook-deployment-pipeline:
+  phonebook_deployment_pipeline:
     runs-on: ubuntu-latest
     defaults:
       run:

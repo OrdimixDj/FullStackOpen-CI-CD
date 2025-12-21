@@ -14,7 +14,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  bloglist-deployment-pipeline:
+  bloglist_deployment_pipeline:
     runs-on: ubuntu-latest
     defaults:
       run:
