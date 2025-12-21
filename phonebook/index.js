@@ -57,7 +57,7 @@ app.get('/api/persons/:id', (request, response) => {
   })
 })
 
-app.post('/api/persons/reset', async (request, response) => {
+app.post('/api/testing/reset', async (request, response) => {
   await Person.deleteMany({})
 
   response.status(204).end()
