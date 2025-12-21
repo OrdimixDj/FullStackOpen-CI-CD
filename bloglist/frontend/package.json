@@ -9,6 +9,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "test": "jest",
+    "start-prod": "node app.js",
     "preview": "vite preview",
     "cypress:open": "cypress open"
   },
@@ -20,7 +21,8 @@
     "react-dom": "^19.1.0"
   },
   "jest": {
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "testPathIgnorePatterns": ["e2e-tests"]
   },
   "devDependencies": {
     "@babel/preset-env": "^7.28.5",
