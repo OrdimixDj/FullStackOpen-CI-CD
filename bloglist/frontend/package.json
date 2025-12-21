@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
+    "test:e2e": "cypress run",
     "build": "vite build",
     "lint": "eslint .",
     "test": "jest",
