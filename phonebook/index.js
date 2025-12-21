@@ -7,7 +7,7 @@ const Person = require('./models/person')
 const app = express()
 app.use(cors())
 
-app.use(express.static('build'))
+app.use(express.static('dist'))
 
 morgan.token('body', (req) => {
   // Because JSON.stringify returns '{}' if req.body is empty, no need to put a condition tester if else
@@ -41,7 +41,7 @@ app.get('/info', (request, response, next) => {
   const requestTime = new Date()
 
   Person
-    .countDocuments({}).then(count => { response.send(` <p>Phonebook has info for ${count} people</p><p>${requestTime}</p>`)})
+    .countDocuments({}).then(count => { response.send(` <p>Phonebook has info for ${count} people</p><p>${requestTime}</p>`) })
     .catch(error => next(error))
 })
 
@@ -55,6 +55,12 @@ app.get('/api/persons/:id', (request, response) => {
   Person.findById(request.params.id).then(person => {
     response.json(person)
   })
+})
+
+app.post('/api/persons/reset', async (request, response) => {
+  await Person.deleteMany({})
+
+  response.status(204).end()
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
@@ -81,7 +87,7 @@ app.post('/api/persons', (request, response, next) => {
 
   personToAdd
     .save()
-    .then(savedPerson => {response.json(savedPerson)})
+    .then(savedPerson => { response.json(savedPerson) })
     .catch(error => next(error))
 })
 

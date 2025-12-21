@@ -24,11 +24,10 @@ const Notification = ({ message }) => {
     return null
   }
 
-  if(message.type == 'error') {
+  if (message.type === 'error') {
     messageStyle.color = 'red'
   }
-  else
-  {
+  else {
     messageStyle.color = 'green'
   }
 
@@ -40,12 +39,12 @@ const Notification = ({ message }) => {
 }
 
 const App = () => {
-  const [persons, setPersons] = useState([]) 
+  const [persons, setPersons] = useState([])
 
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [newFilter, setNewFilter] = useState('')
-  const [message, setMessage] = useState({content:'', type:''})
+  const [message, setMessage] = useState({ content: '', type: '' })
 
 
   useEffect(() => {
@@ -55,7 +54,7 @@ const App = () => {
         setPersons(response)
       })
   }, [])
-  
+
   return (
     <div>
       <h2>Phonebook</h2>

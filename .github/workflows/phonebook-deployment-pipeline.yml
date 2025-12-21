@@ -1,9 +1,8 @@
 name: Bloglist deployment pipeline
 
 env:
-  PORT: ${{ secrets.PORT_BLOGLIST }}
-  TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI_BLOGLIST }}
-  SECRET: ${{ secrets.SECRET }}
+  PORT: ${{ secrets.PORT_PHONEBOOK }}
+  MONGODB_URI: ${{ secrets.MONGODB_URI_PHONEBOOK }}
 
 on:
   push:
@@ -18,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./bloglist
+        working-directory: ./phonebook
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -33,7 +32,7 @@ jobs:
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
-          working-directory: ./bloglist
+          working-directory: ./phonebook
           command: npm run test:e2e
           start: npm run start:testbackend
           wait-on: http://localhost:${{ env.PORT }}

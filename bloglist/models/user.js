@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const Blog = require('../models/blog')
 const uniqueValidator = require('mongoose-unique-validator')
 
 const userSchema = new mongoose.Schema({
