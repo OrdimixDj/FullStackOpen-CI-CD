@@ -1,4 +1,4 @@
-name: Bloglist deployment pipeline
+name: Phonebook deployment pipeline
 
 env:
   PORT: ${{ secrets.PORT_PHONEBOOK }}
