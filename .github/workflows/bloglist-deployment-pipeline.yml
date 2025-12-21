@@ -24,12 +24,10 @@ jobs:
       - name: build
         run: npm run build
       - name: Start backend (test mode)
-        working-directory: ./bloglist/backend
         run: |
           npm run start:testbackend &
           npx wait-on http://localhost:3003/api/testing
       - name: Start frontend
-        working-directory: ./bloglist/frontend
         run: |
           npm run start:frontend &
           npx wait-on http://localhost:5173
