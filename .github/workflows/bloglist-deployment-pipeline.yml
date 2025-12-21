@@ -29,13 +29,9 @@ jobs:
       - name: build
         run: npm run build
       - name: Start backend (test mode)
-        run: |
-          npm run start:testbackend &
-          npx wait-on http://localhost:3003/api/testing
+        run: npm run start:testbackend
       - name: Start frontend
-        run: |
-          npm run start:frontend &
-          npx wait-on http://localhost:5173
+        run: npm run start:frontend
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
