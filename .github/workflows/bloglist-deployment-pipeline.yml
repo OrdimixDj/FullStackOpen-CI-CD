@@ -14,7 +14,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  frontend_deployment_pipeline:
+  deployment_pipeline:
     runs-on: ubuntu-latest
     defaults:
       run:
