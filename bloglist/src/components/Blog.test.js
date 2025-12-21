@@ -67,7 +67,7 @@ test('clicking the likes 2 times calls 2 times mockHandler', async () => {
   const handleBlogUpdate = mockHandler
   const handleBlogRemove = mockHandler
 
-  const { container } = render(
+  render(
     <Blog blog={blog} handleBlogUpdate={handleBlogUpdate} handleBlogRemove={handleBlogRemove} user={mockUser} />
   )
 

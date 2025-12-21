@@ -1,7 +1,7 @@
 const _ = require("lodash")
 
-const dummy = (blogs) => {
-  return 1
+const dummy = () => {
+    return 1
 }
 
 const totalLikes = (blogs) => {
@@ -19,8 +19,7 @@ const favoriteBlog = (blogs) => {
         if (current.likes > favorite.likes) {
             return current
         }
-        else
-        {
+        else {
             return favorite
         }
     })
@@ -65,5 +64,5 @@ const mostLikes = (blogs) => {
 
 
 module.exports = {
-  dummy, totalLikes, favoriteBlog, mostBlogs, mostLikes
+    dummy, totalLikes, favoriteBlog, mostBlogs, mostLikes
 }
