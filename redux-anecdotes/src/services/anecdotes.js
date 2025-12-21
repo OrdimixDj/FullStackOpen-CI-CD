@@ -14,8 +14,8 @@ const createNew = async (content) => {
 }
 
 const update = async (anecdote) => {
-  const requestUrl = baseUrl + '/' + anecdote.id 
-  
+  const requestUrl = baseUrl + '/' + anecdote.id
+
   const response = await axios.put(requestUrl, anecdote)
   return response.data
 }

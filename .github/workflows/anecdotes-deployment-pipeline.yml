@@ -1,0 +1,31 @@
+name: Anecdotes deployment pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
+
+jobs:
+  deployment_pipeline:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./redux-anecdotes
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+      - name: lint
+        run: npm run eslint
+      - name: e2e tests
+        uses: cypress-io/github-action@v5
+        with:
+          working-directory: ./redux-anecdotes
+          command: npm run test:e2e
+          wait-on: 'http://localhost:3001, http://localhost:5173'
