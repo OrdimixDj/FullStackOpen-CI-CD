@@ -1,5 +1,10 @@
 name: Bloglist deployment pipeline
 
+env:
+  PORT: ${{ secrets.PORT }}
+  TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+  SECRET: ${{ secrets.SECRET }}
+
 on:
   push:
     branches:
