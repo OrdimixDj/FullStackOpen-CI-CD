@@ -1,17 +1,17 @@
-describe('Blog app', function() {
-  beforeEach(function() {
+describe('Blog app', function () {
+  beforeEach(function () {
     cy.request('POST', 'http://localhost:3003/api/testing/reset')
-    const user = {username: "test_user", name: "TEST", password: "testpassword"}
+    const user = { username: "test_user", name: "TEST", password: "testpassword" }
     cy.request('POST', 'http://localhost:3003/api/users', user)
-    cy.visit('http://localhost:5173')
+    cy.visit('http://localhost:3003')
   })
 
-  it('Login form is shown', function() {
+  it('Login form is shown', function () {
     cy.contains('Log in to application')
   })
 
-  describe('Login',function() {
-    it('succeeds with correct credentials', function() {
+  describe('Login', function () {
+    it('succeeds with correct credentials', function () {
       cy.get('#username-input').type('test_user')
       cy.get('#password-input').type('testpassword')
       cy.get('#login-button').click()
@@ -20,7 +20,7 @@ describe('Blog app', function() {
       cy.contains('TEST logged in')
     })
 
-    it('fails with wrong credentials', function() {
+    it('fails with wrong credentials', function () {
       cy.get('#username-input').type('wrong')
       cy.get('#password-input').type('wrong')
       cy.get('#login-button').click()
@@ -31,14 +31,14 @@ describe('Blog app', function() {
     })
   })
 
-  describe('When logged in', function() {
-    beforeEach(function() {
+  describe('When logged in', function () {
+    beforeEach(function () {
       cy.get('#username-input').type('test_user')
       cy.get('#password-input').type('testpassword')
       cy.get('#login-button').click()
     })
 
-    it('A blog can be created', function() {
+    it('A blog can be created', function () {
       cy.get('#show-create-blog-div-button').click()
       cy.get('#title-input').type('Test title')
       cy.get('#author-input').type('Test author')
@@ -50,8 +50,8 @@ describe('Blog app', function() {
     })
   })
 
-describe('When logged in and a blog created', function() {
-    beforeEach(function() {
+  describe('When logged in and a blog created', function () {
+    beforeEach(function () {
       cy.get('#username-input').type('test_user')
       cy.get('#password-input').type('testpassword')
       cy.get('#login-button').click()
@@ -63,7 +63,7 @@ describe('When logged in and a blog created', function() {
       cy.get('#create-blog-button').click()
     })
 
-    it('A blog can be liked by user', function() {
+    it('A blog can be liked by user', function () {
       // At that state of the tests, of course only one blog is created so I can look for his button with the text
       cy.contains('view').click()
       cy.contains('likes 0')
@@ -71,7 +71,7 @@ describe('When logged in and a blog created', function() {
       cy.contains('likes 1')
     })
 
-    it('A blog can be removed by user who created it', function() {
+    it('A blog can be removed by user who created it', function () {
       // At that state of the tests, of course only one blog is created so I can look for his button with the text
       cy.contains('view').click()
       cy.contains('remove').click()
@@ -81,12 +81,12 @@ describe('When logged in and a blog created', function() {
       cy.contains('Blog Test title by Test author successfully removed')
     })
 
-    it('Only the creator can see the remove button', function() {
+    it('Only the creator can see the remove button', function () {
       cy.contains('view').click()
       cy.get('#remove-blog-button').should('be.visible')
       cy.get('#logout-button').click()
 
-      const user = {username: "test_user2", name: "TEST2", password: "testpassword2"}
+      const user = { username: "test_user2", name: "TEST2", password: "testpassword2" }
       cy.request('POST', 'http://localhost:3003/api/users', user)
       cy.get('#username-input').type('test_user2')
       cy.get('#password-input').type('testpassword2')
@@ -98,12 +98,12 @@ describe('When logged in and a blog created', function() {
   })
 
 
-describe('When logged in and a several blogs created', function() {
-    beforeEach(function() {
+  describe('When logged in and a several blogs created', function () {
+    beforeEach(function () {
       cy.get('#username-input').type('test_user')
       cy.get('#password-input').type('testpassword')
       cy.get('#login-button').click()
-      
+
       // Blog 1
       cy.get('#show-create-blog-div-button').click()
       cy.get('#title-input').type('Test title')
@@ -119,7 +119,7 @@ describe('When logged in and a several blogs created', function() {
       cy.get('#create-blog-button').click()
     })
 
-    it('Blogs are sorted by likes', function() {
+    it('Blogs are sorted by likes', function () {
       cy.get('.view-button').eq(0).click()
       cy.get('.view-button').eq(1).click()
 
