@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const helper = require("./test_helper");

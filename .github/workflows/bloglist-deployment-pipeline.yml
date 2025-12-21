@@ -13,22 +13,28 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./bloglist/frontend
+        working-directory: ./bloglist
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: './bloglist/frontend/package-lock.json'
-      - name: Install dependencies 
+      - name: Install dependencies
         run: npm install
       - name: build
         run: npm run build
+      - name: Start backend (test mode)
+        working-directory: ./bloglist/backend
+        run: |
+          npm run start:testbackend &
+          npx wait-on http://localhost:3003/api/testing
+      - name: Start frontend
+        working-directory: ./bloglist/frontend
+        run: |
+          npm run start:frontend &
+          npx wait-on http://localhost:5173
       - name: e2e tests
         uses: cypress-io/github-action@v5
         with:
-          working-directory: bloglist/frontend
+          working-directory: ./bloglist
           command: npm run test:e2e
-          start: npm run start-prod
-          wait-on: http://localhost:5173

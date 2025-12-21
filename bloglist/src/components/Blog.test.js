@@ -1,3 +1,4 @@
+/** @jest-environment jsdom */
 import React from 'react'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
@@ -6,12 +7,12 @@ import Blog from './Blog'
 import BlogForm from './BlogForm'
 
 const blog = {
-    title: 'Testing React components with Jest',
-    author: 'Test Writer',
-    url: 'http://testurl.com',
-    likes: 10,
-    user: { name: 'P. Testeur', username: 'testusername' }
-  }
+  title: 'Testing React components with Jest',
+  author: 'Test Writer',
+  url: 'http://testurl.com',
+  likes: 10,
+  user: { name: 'P. Testeur', username: 'testusername' }
+}
 
 test('renders title and author, but hides URL and likes by default', () => {
   const mockHandler = jest.fn()
@@ -99,7 +100,7 @@ test('form calls the handler with correct details when a new blog is created', a
   await user.click(sendButton)
 
   expect(createBlog.mock.calls).toHaveLength(1)
-  
+
   expect(createBlog.mock.calls[0][0]).toEqual({
     title: 'Testing React components with Jest',
     author: 'Test Writer',
